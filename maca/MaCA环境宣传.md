@@ -58,6 +58,7 @@ MaCa核心架构如上图所示，由推演引擎环境辅以对战调度模块�
 	- 观测构建：每个决策算法对应的观测信息构建，由原始状态数据生成与决策算法需求对应的观测数据。
 
 MaCA代码结构与上述模块划分一致，具体如下图：
+
 ![MaCA代码结构](https://leonfg.github.io/maca/resource/code_arch.png)
 - environment\：推演环境
 	- environment/interface.py：环境调用接口
@@ -169,17 +170,18 @@ def obs_construct(self, obs_raw_dict)
 from agent.base_agent import BaseAgent
 class Agent(BaseAgent):
 
-def __init__(self):#初始化接口
-    BaseAgent.__init__(self)#从BaseAgent继承
-	self.obs_ind = 'raw'	#状态信息形式，’raw’表示原始信息形式
+def __init__(self):				#初始化接口
+    BaseAgent.__init__(self)	#从BaseAgent继承
+	self.obs_ind = 'raw'		#状态信息形式，’raw’表示原始信息形式
 	#注：可根据原始信息自行组织新的信息,可参考simple
 
 def set_map_info(self, size_x, size_y, detector_num, fighter_num):#读取地图信息
-    pass	#根据需要自行选择函数实现形式
+    pass						#根据需要自行选择函数实现形式
 
 def get_action(self, obs_dict, step_cnt):	#obs_dict为状态,step_cnt为当前步数(从1开始)
 	return detector_action, fighter_action
 ```
+
 ### 4.5 主要数据格式定义
 #### 4.5.1 raw obs信息结构
 环境底层原始观测数据Raw data Observation结构为字典，包含三部分内容分别为detector_obs_list、fighter_obs_list、join_obs_dict。

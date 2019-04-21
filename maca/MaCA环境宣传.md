@@ -35,7 +35,7 @@ export PYTHONPATH=$(pwd)/environment:$PYTHONPATH
 python fight_mp.py
 ```
 对战场景如下图：
-![对战示例](https://leonfg.github.io/MaCA/resource/MaCA.gif)
+![对战示例](https://leonfg.github.io/maca/resource/maca.gif)
 ### 3.2 观看回放录像
 1. 运行对战时增加“--log”参数，即可在log路径下生成以“红方_名称vs_蓝方名称”命名的日志文件夹，其中存储本局对战相关信息。
 ```bash
@@ -47,7 +47,8 @@ python replay.py fix_rule_vs_fix_rule
 ```
 ## 4 MaCA详解
 ### 4.1 MaCA架构简介
-![MaCA架构图](https://leonfg.github.io/MaCA/resource/MaCA_arch_cn.png)
+![MaCA架构图](https://leonfg.github.io/maca/resource/maca_arch_cn.png)
+
 MaCA核心架构如上图所示，由推演引擎环境辅以对战调度模块，对战场景库（maps）构成。与外围的决策算法代码相结合，实现多智能体决策训练及对战。主要模块功能如下：
 - 推演环境：承担核心推演功能，负责载入作战场景，对外输出原始战场状态数据（raw obs），接收双方决策算法给出的动作控制信息，执行一系列位置更新、电磁传播、攻击决策算法，实现对战推演，同时具有现实及日志记录功能。
 - 调用接口：外部模块与推演环境的交互接口
@@ -58,7 +59,7 @@ MaCA核心架构如上图所示，由推演引擎环境辅以对战调度模块�
 
 MaCA代码结构与上述模块划分一致，具体如下图：
 
-![MaCA代码结构](https://leonfg.github.io/MaCA/resource/code_arch.png)
+![MaCA代码结构](https://leonfg.github.io/maca/resource/code_arch.png)
 - environment\：推演环境
 	- environment/interface.py：环境调用接口
 - agent\：用于存储封装好的可直接调用的智能体决策代码，每个决策代码可单独设立一个文件夹，按照标准封装，系统直接调用

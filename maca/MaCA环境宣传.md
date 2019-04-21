@@ -1,5 +1,4 @@
 # 多智能体对抗仿真环境MaCA完全入门指南
-[TOC]
 ## 1 前言
 中国电子科技集团公司认知与智能技术重点实验室发布的MaCA（Multi-agent Combat Arena）环境，是国内首个可模拟军事作战的轻量级多智能体对抗与训练平台，是多智能体对抗算法研究、训练、测试和评估的绝佳环境，可支持作战场景和规模自定义，智能体数量和种类自定义，智能体特征和属性自定义，支持智能体行为回报规则和回报值自定义等。目前发布的MaCA环境中预设了两种智能体类型，探测单元和攻击单元：探测单元可模拟L、S波段雷达进行全向探测，支持多频点切换；攻击单元具备侦察、探测、干扰、打击等功能，可模拟X波段雷达进行指向性探测，模拟L、S、X频段干扰设备进行阻塞式和瞄准式电子干扰，支持多频点切换。攻击单元还可模拟对敌方进行火力攻击，同时具有无源侦测能力，可模拟多站无源协同定位和辐射源特征识别。
 MaCA 环境为研究利用人工智能方法解决大规模多智能体分布式对抗问题提供了很好的支撑，专门面向多智能体深度强化学习开放了 RL-API 接口。环境支持使用 Python 语言进行算法实现，并支持Tensorflow、Pytorch 等常用深度学习框架的集成调用。
@@ -36,7 +35,7 @@ export PYTHONPATH=$(pwd)/environment:$PYTHONPATH
 python fight_mp.py
 ```
 对战场景如下图：
-![对战示例](https://leonfg.github.io/maca/resource/maca.gif)
+![对战示例](https://leonfg.github.io/MaCA/resource/MaCA.gif)
 ### 3.2 观看回放录像
 1. 运行对战时增加“--log”参数，即可在log路径下生成以“红方_名称vs_蓝方名称”命名的日志文件夹，其中存储本局对战相关信息。
 ```bash
@@ -48,8 +47,8 @@ python replay.py fix_rule_vs_fix_rule
 ```
 ## 4 MaCA详解
 ### 4.1 MaCA架构简介
-![MaCA架构图](https://leonfg.github.io/maca/resource/maca_arch_cn.png)
-MaCa核心架构如上图所示，由推演引擎环境辅以对战调度模块，对战场景库（maps）构成。与外围的决策算法代码相结合，实现多智能体决策训练及对战。主要模块功能如下：
+![MaCA架构图](https://leonfg.github.io/MaCA/resource/MaCA_arch_cn.png)
+MaCA核心架构如上图所示，由推演引擎环境辅以对战调度模块，对战场景库（maps）构成。与外围的决策算法代码相结合，实现多智能体决策训练及对战。主要模块功能如下：
 - 推演环境：承担核心推演功能，负责载入作战场景，对外输出原始战场状态数据（raw obs），接收双方决策算法给出的动作控制信息，执行一系列位置更新、电磁传播、攻击决策算法，实现对战推演，同时具有现实及日志记录功能。
 - 调用接口：外部模块与推演环境的交互接口
 - 对战调度：负责启动红蓝对战，可对对战多方面参数进行自定义，如双方决策程序指定、对战局数、场景选择、每局最高持续帧数等等，同时向决策进程转发推演环境输出的状态数据，接收决策进程输出的动作信息
@@ -59,7 +58,7 @@ MaCa核心架构如上图所示，由推演引擎环境辅以对战调度模块�
 
 MaCA代码结构与上述模块划分一致，具体如下图：
 
-![MaCA代码结构](https://leonfg.github.io/maca/resource/code_arch.png)
+![MaCA代码结构](https://leonfg.github.io/MaCA/resource/code_arch.png)
 - environment\：推演环境
 	- environment/interface.py：环境调用接口
 - agent\：用于存储封装好的可直接调用的智能体决策代码，每个决策代码可单独设立一个文件夹，按照标准封装，系统直接调用
@@ -127,9 +126,9 @@ MaCA环境的接口定义在interface.py文件的Environment类中，其接口�
 
 | 序号 | 参数名                | 功能                   | 存在性 | 赋值规则  |
 | ---- | --------------------- | ---------------------- | ------ | --------- |
-| 1 | side1_detector_action | 红方侦查单元动作集     | 必选   | 参见动作结构 |
+| 1 | side1_detector_action | 红方探测单元动作集     | 必选   | 参见动作结构 |
 | 2 | side1_fighter_action  | 红方干扰打击单元动作集 | 必选   | 参见动作结构 |
-| 3 | side2_detector_action | 蓝方侦查单元动作集     | 必选   | 参见动作结构 |
+| 3 | side2_detector_action | 蓝方探测单元动作集     | 必选   | 参见动作结构 |
 | 4 | side2_fighter_action  | 蓝方干扰打击单元动作集 | 必选   | 参见动作结构 |
 
 #### 4.2.4 get_obs
@@ -151,10 +150,10 @@ MaCA环境的接口定义在interface.py文件的Environment类中，其接口�
 
 | 序号 | 返回值名       | 功能                     | 数据形式  |
 | ---- | -------------- | ------------------------ | --------- |
-| 1 | side1_detector | 红方侦查单元单步回报     | 整型 |
+| 1 | side1_detector | 红方探测单元单步回报     | 整型 |
 | 2 | side1_fighter  | 红方打击干扰单元单步回报 | 整型 |
 | 3 | side1_round    | 红方本局输赢回报         | 整型 |
-| 4 | side2_detector | 蓝方侦查单元单步回报     | 整型 |
+| 4 | side2_detector | 蓝方探测单元单步回报     | 整型 |
 | 5 | side2_fighter  | 蓝方打击干扰单元单步回报 | 整型 |
 | 6 | side2_round    | 蓝方本局输赢回报         | 整型 |
 
@@ -254,8 +253,8 @@ joint_obs_list为表示全局信息的字典{‘strike_list’:打击列表，�
 ### 5.1 算法与MaCA环境交互关系
 ![工作流程](https://leonfg.github.io/maca/resource/workflow.png)
 ### 5.2 算法实现示例
-#### 5.2.1 决策（agent）
-决策的功能是接收观测量并处理，选择合适的动作，并与环境交互。这里将决策程序成为agent，代码存放在agent路径中，子文件夹名称作为该agent名称。其中，agent.base_agent模块定义了所有agent的基类BaseAgent，其中定义了一些基本数据以及观测信息构建类指示函数:
+#### 5.2.1 多智能体决策（agent）
+决策的功能是接收观测量并处理，选择合适的动作，并与环境交互。这里将多智能体决策程序称为agent，代码存放在agent路径中，子文件夹名称作为该agent名称。其中，agent.base_agent模块定义了所有agent的基类BaseAgent，其中定义了一些基本数据以及观测信息构建类指示函数:
 ```python
 def get_obs_ind(self):
     """
@@ -265,7 +264,7 @@ def get_obs_ind(self):
     '''返回obs_ind的值'''
 
 ```
-agent程序最主要的方法是get_action，即接收观测量，并返回动作。
+agent程序最主要的方法是get_action，即接收观测量并返回动作。
 一个简单的agent应具有如下形式：
 ```python
 class SimpleAgent(BaseAgent):
@@ -297,7 +296,7 @@ class SimpleAgent(BaseAgent):
         '''由观测信息得到动作并输出'''
 ```
 #### 5.2.2 观测信息构建
-环境输出的底层观测信息称为raw obs，该数据包括红方或蓝方自身所有可知状态信息。对于不同技术思路的agent来说，可能并不需要所有信息，或者数据组成形式不能满足agent自身需求，此时需要agent编写者基于raw obs进行观测信息重构，环境提供此机制便于开发者自定义观测数据。
+环境输出的底层观测信息称为raw obs，该数据包括红方或蓝方自身所有可知状态信息。对于不同技术思路的agent来说，可能并不需要所有信息，或者数据构建形式不能满足agent自身需求，此时需要agent编写者基于raw obs进行观测信息重构，环境提供此机制便于开发者自定义观测数据。
 观测重构代码应存放于obs_construct/“obs_ind名称”/construct.py，其中“obs_ind名称”应与agent中obs_ind变量赋值相同。一个典型的obs重构代码应具有如下形式：
 ```python
 class ObsConstruct:
@@ -325,14 +324,14 @@ agent及配套obs construct按上述要求编写完成后，使用fight_mp进行
 由于不同技术思路下的agent训练过程各不相同，本环境无法提类似fight_mp的统一训练管控入口，需要开发者自己编写训练调度程序，调用环境接口进行训练。对战执行流程如下：
 1. 实例化双方agent
 2. 获取双方obs_ind
-3. 调用interface.Environment()创建环境
-4. Environment.get_map_info()获取地图信息
+3. 调用environment.interface.Environment()创建环境
+4. environment.interface.get_map_info()获取地图信息
 5. 将地图信息传给每个agent各自的set_map_info()
 6. 进入step推进的循环
-	- Environment.get_obs()获取obs信息
+	- environment.interface.Environment.get_obs()获取obs信息
 	- 使用agent的get_action()将obs传输给agent并获取动作指令
-	- Environment.step()将动作返回环境，进行下一步推演
-	- 每一step完成后通过Environment.get_reward()获得回报数据，通过每一step完成后通过Environment.get_done()判断本局是否结束。
+	- environment.interface.Environment.step()将动作返回环境，进行下一步推演
+	- 每一step完成后通过environment.interface.Environment.get_reward()获得回报数据，通过每一step完成后通过environment.interface.Environment.get_done()判断本局是否结束。
 
 具体训练流程可参考train/simple/main.py
 ## 6 小结

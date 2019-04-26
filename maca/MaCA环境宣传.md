@@ -1,4 +1,5 @@
 # 多智能体对抗仿真环境MaCA完全入门指南
+[TOC]
 ## 1 前言
 中国电子科技集团公司认知与智能技术重点实验室发布的MaCA（Multi-agent Combat Arena）环境，是国内首个可模拟军事作战的轻量级多智能体对抗与训练平台，是多智能体对抗算法研究、训练、测试和评估的绝佳环境，可支持作战场景和规模自定义，智能体数量和种类自定义，智能体特征和属性自定义，支持智能体行为回报规则和回报值自定义等。目前发布的MaCA环境中预设了两种智能体类型，探测单元和攻击单元：探测单元可模拟L、S波段雷达进行全向探测，支持多频点切换；攻击单元具备侦察、探测、干扰、打击等功能，可模拟X波段雷达进行指向性探测，模拟L、S、X频段干扰设备进行阻塞式和瞄准式电子干扰，支持多频点切换。攻击单元还可模拟对敌方进行火力攻击，同时具有无源侦测能力，可模拟多站无源协同定位和辐射源特征识别。
 MaCA 环境为研究利用人工智能方法解决大规模多智能体分布式对抗问题提供了很好的支撑，专门面向多智能体深度强化学习开放了 RL-API 接口。环境支持使用 Python 语言进行算法实现，并支持Tensorflow、Pytorch 等常用深度学习框架的集成调用。
@@ -26,12 +27,12 @@ export PYTHONPATH=$(pwd)/environment:$PYTHONPATH
 ```
 - Pycharm中配置（适用于Windows、Linux、Mac）
 	- 在Pycharm打开MaCA
-	- 将“environment/”文件夹设置为“Sources Root”
+	- 将“[environment](/environment)”文件夹设置为“Sources Root”
 	- 运行MaCA中任何py文件必须将其“Working Directory”设置为MaCA根目录
 
 ## 3 MaCA初探
 ### 3.1 运行一个对抗场景
-运行fight_mp.py，即可开启一场基于预置规则的异构对抗
+运行[fight_mp.py](/fight_mp.py)，即可开启一场基于预置规则的异构对抗
 ```bash
 python fight_mp.py
 ```
@@ -61,35 +62,35 @@ MaCA核心架构如上图所示，由推演引擎环境辅以对抗调度模块�
 MaCA代码结构与上述模块划分一致，具体如下图：
 
 ![MaCA代码结构](https://leonfg.github.io/maca/resource/code_arch.png)
-- environment\：推演环境
-	- environment/interface.py：环境调用接口
-- agent\：用于存储封装好的可直接调用的智能体决策代码，每个决策代码可单独设立一个文件夹，按照标准封装，系统直接调用
-	- fix_rule\：基于规则的同构异构对抗决策算法
-	- fix_rule_no_att\：基于规则的同构异构对抗决策算法（无攻击能力）
-	- simple\：基于DQN的同构对抗决策示例算法，需使用pytorch
-- obs_construct：观测值组织形式自定义，开发者可根据算法需要自定义obs结构
-	- simple\：基于DQN的同构对抗决策示例对应的obs组织
-- fight_mp.py：对抗调度程序
-- replay.py 日志回放入口程序
-- maps\：对抗场景库
-	- 1000_1000_2_10_vs_2_10.map：预置异构对抗场景
-	- 1000_1000_fighter10v10.map：预置同构对抗场景
-- configuration\：配置数据
-	- reward.py：部分预置回报检查点的赋值
-	- system.py：部分系统推演规则定义
-- train\：决策算法训练所在路径
-	- simple\：simple决策模型训练代码
-- model\：决策模型数据存储路径
-	- simple\：simple决策模型数据存储路径
-- common\：多模块复用代码
-	- agent_process.py：对抗调度和比赛调度模块公用子进程管理代码
-- log\：对抗日志存储路径
-- tournament\：多智能体比赛调度及结果统计模块
-	- tournament_mp.py：比赛调度程序
-	- config_gen.py：比赛配置辅助生成工具
+- [environment/](/environment/)：推演环境
+	- [interface.py](/environment/interface.py)：环境调用接口
+- [agent/](/agent/)：用于存储封装好的可直接调用的智能体决策代码，每个决策代码可单独设立一个文件夹，按照标准封装，系统直接调用
+	- [fix_rule/](/agent/fix_rule/)：基于规则的同构异构对抗决策算法
+	- [fix_rule_no_att/](/agent/fix_rule_no_att/)：基于规则的同构异构对抗决策算法（无攻击能力）
+	- [simple/](/agent/simple/)：基于DQN的同构对抗决策示例算法，需使用pytorch
+- [obs_construct/](/obs_construct/)：观测值组织形式自定义，开发者可根据算法需要自定义obs结构
+	- [simple/](/obs_construct/simple/)：基于DQN的同构对抗决策示例对应的obs组织
+- [fight_mp.py](/fight_mp.py)：对抗调度程序
+- [replay.py](/replay.py) 日志回放入口程序
+- [maps/](/maps/)：对抗场景库
+	- [1000_1000_2_10_vs_2_10.map](/maps/1000_1000_2_10_vs_2_10.map)：预置异构对抗场景
+	- [1000_1000_fighter10v10.map](/maps/1000_1000_fighter10v10.map)：预置同构对抗场景
+- [configuration/](/configuration/)：配置数据
+	- [reward.py](/configuration/reward.py)：部分预置回报检查点的赋值
+	- [system.py](/configuration/system.py)：部分系统推演规则定义
+- [train/](/train)：决策算法训练所在路径
+	- [simple/](/train/simple/)：simple决策模型训练代码
+- [model/](/model/)：决策模型数据存储路径
+	- [simple/](model/simple/)：simple决策模型数据存储路径
+- [common/](/common)：多模块复用代码
+	- [agent_process.py](/common/agent_process.py)：对抗调度和比赛调度模块公用子进程管理代码
+- [log/](/log/)：对抗日志存储路径
+- [tournament/](/tournament/)：多智能体比赛调度及结果统计模块
+	- [tournament_mp.py](/tournament/tournament_mp.py)：比赛调度程序
+	- [config_gen.py](/tournament/config_gen.py)：比赛配置辅助生成工具
 
 ### 4.2 环境调用接口说明
-MaCA环境的接口定义在interface.py文件的Environment类中，其接口函数如下：
+MaCA环境的接口定义在[interface.py ](/environment/interface.py )文件的Environment类中，其接口函数如下：
 
 | 接口函数 | 描述 |
 |  ---- |  ---- |
@@ -160,7 +161,7 @@ MaCA环境的接口定义在interface.py文件的Environment类中，其接口�
 | 6 | side2_round    | 蓝方本局输赢回报         | 整型 |
 
 ### 4.3 自定义obs信息统一接口
-为使得环境能够返回Agent对抗或训练时自定义的状态信息，自组织状态信息的接口统一放在obs_construct下，如simple智能体中指定obs_ind为simple，则obs_construct模块下构建simple文件夹，每一个信息组织形式文件夹下必须包含construct.py文件，且该文件定义ObsConstruct类及obs_construct成员函数，成员函数接口如下：
+为使得环境能够返回Agent对抗或训练时自定义的状态信息，自组织状态信息的接口统一放在[obs_construct/](/obs_construct/)下，如simple智能体中指定obs_ind为simple，则应在obs_construct模块下构建simple文件夹，每一个信息组织形式文件夹下必须包含construct.py文件，且该文件定义ObsConstruct类及obs_construct成员函数，成员函数接口如下：
 ```python
 def obs_construct(self, obs_raw_dict)
 # obs_raw_dict为raw信息结构
@@ -335,6 +336,6 @@ agent及配套obs construct按上述要求编写完成后，使用fight_mp进行
 	- environment.interface.Environment.step()将动作返回环境，进行下一步推演
 	- 每一step完成后通过environment.interface.Environment.get_reward()获得回报数据，通过每一step完成后通过environment.interface.Environment.get_done()判断本局是否结束。
 
-具体训练流程可参考train/simple/main.py
+具体训练流程可参考[train/simple/main.py](/train/simple/main.py)
 ## 6 小结
 中国电子科技集团公司认知与智能技术重点实验室发布的MaCA环境为多智能体对抗算法研究领域带来了一个全新的实验、训练与评估验证平台，为广大研究者提供了更多的交流学习机会。众多军队科研机构，企业科研机构，高等院校都在这个“竞技场”上修炼升级，同台竞技，相互促进，共同提高，将极大地促进军事智能算法研究和重大基础科学问题的解决，实现军事智能跨越式发展和实质性突破，为军事智能未来应用打下坚实基础。

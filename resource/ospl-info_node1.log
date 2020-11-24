@@ -1,0 +1,151 @@
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:19:08-0800
+Description : ---------------------------------------------------------------
+              -- The service is using the following configuration settings --
+              ---------------------------------------------------------------
+              Domain (id)          : ospl_sp_ddsi (0)
+              Storage              : 0 Kbytes
+              Storage threshold    : 1024 Kbytes
+              Storage address      : Not available
+              Locking              : default
+              Memory mode          : Heap memory
+              Builtin topics       : true
+              Priority inheritance : false
+              SystemId             : 2031753842 from [1,2147483647]
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : spliced 7f3b7611c700
+Internals   : 6.9.181127OSS///The OpenSplice domain service/u_domain.c/785/0/1606187948.775552114/0
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:19:08-0800
+Description : Service cmsoap disabled
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : spliced 7f3b7611c700
+Internals   : 6.9.181127OSS///OpenSplice domain service/sr_componentInfo.c/446/0/1606187948.775944543/0
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:19:08-0800
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'splicedaemon' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : spliced 7f3b7611c700
+Internals   : 6.9.181127OSS///v_serviceChangeState/v_service.c/266/0/1606187948.776389362/0
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:19:08-0800
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'ddsi2' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : ddsi2 7f3b633c3700
+Internals   : 6.9.181127OSS///v_serviceChangeState/v_service.c/266/0/1606187948.783004039/0
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:19:09-0800
+Description : The durability service can be identified by ID: 2031753842
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : durability 7f3b63766700
+Internals   : 6.9.181127OSS///DurabilityService/d_durability.c/554/0/1606187949.003081942/0
+========================================================================================
+Report      : WARNING
+Date        : 2020-11-23T19:19:11-0800
+Description : thread tev failed to make progress
+
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : lease 7f3b632c2700
+Internals   : 6.9.181127OSS///ddsi2/q_servicelease.c/131/0/1606187951.869815936/0
+========================================================================================
+Report      : WARNING
+Date        : 2020-11-23T19:19:13-0800
+Description : thread tev once again made progress
+
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : lease 7f3b632c2700
+Internals   : 6.9.181127OSS///ddsi2/q_servicelease.c/131/0/1606187953.870692403/0
+========================================================================================
+Report      : WARNING
+Date        : 2020-11-23T19:19:14-0800
+Description : thread tev failed to make progress
+
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : lease 7f3b632c2700
+Internals   : 6.9.181127OSS///ddsi2/q_servicelease.c/131/0/1606187954.871216815/0
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:19:16-0800
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'durability' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : conflictResolver 7f3b630c2700
+Internals   : 6.9.181127OSS///v_serviceChangeState/v_service.c/266/0/1606187956.231359963/0
+========================================================================================
+Report      : WARNING
+Date        : 2020-11-23T19:19:16-0800
+Description : thread tev once again made progress
+
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : lease 7f3b632c2700
+Internals   : 6.9.181127OSS///ddsi2/q_servicelease.c/131/0/1606187956.872074318/0
+========================================================================================
+Report      : WARNING
+Date        : 2020-11-23T19:19:17-0800
+Description : thread tev failed to make progress
+
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : lease 7f3b632c2700
+Internals   : 6.9.181127OSS///ddsi2/q_servicelease.c/131/0/1606187957.872529063/0
+========================================================================================
+Report      : WARNING
+Date        : 2020-11-23T19:19:19-0800
+Description : thread tev once again made progress
+
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : lease 7f3b632c2700
+Internals   : 6.9.181127OSS///ddsi2/q_servicelease.c/131/0/1606187959.873400245/0
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:20:17-0800
+Description : Termination request (signal 2) received from PID 22462 (self), UID 1000
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : signalHandler 7f3b63fff700
+Internals   : 6.9.181127OSS///signalHandlerThread/os_signalHandler.c/632/0/1606188017.352079028/-1
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:20:17-0800
+Description : Removed 1228 objects
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : main thread 7f3b7625d740
+Internals   : 6.9.181127OSS///Database close/c_base.c/3272/0/1606188017.364516908/-1
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:20:17-0800
+Description : Removed 1228 objects
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : main thread 7f3b7625d740
+Internals   : 6.9.181127OSS///Database close/c_base.c/3272/0/1606188017.364742929/-1
+========================================================================================
+Report      : INFO
+Date        : 2020-11-23T19:20:17-0800
+Description : Removed 1228 objects
+Node        : ubuntu
+Process     : python3.6 <22462>
+Thread      : main thread 7f3b7625d740
+Internals   : 6.9.181127OSS///Database close/c_base.c/3272/0/1606188017.364945408/-1
